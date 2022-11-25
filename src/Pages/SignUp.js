@@ -161,7 +161,7 @@ const SignUp = (props) => {
     <div className="signup">
       <div className="signup__title border-bottom-basic">
         <div className="signup__title__options-container">
-          <h2 className="signup__title__company-name">隨意書店</h2>
+          <h2 className="signup__title__company-name">小周書店</h2>
         </div>
       </div>
       <form

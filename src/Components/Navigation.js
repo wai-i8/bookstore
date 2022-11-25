@@ -80,7 +80,7 @@ const Navigation = (props) => {
               className="navigation__icon"
             />
             <Link to="/" className="navigation__title">
-              隨意書店
+              小周書店
             </Link>
           </div>
           <form action="#" className="search">
