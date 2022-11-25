@@ -1,8 +1,0 @@
-.not-found {
-  background-color: $color-grey;
-  color: $color-primary-dark;
-  position: relative;
-  & > * {
-    @include absCenter;
-  }
-}
