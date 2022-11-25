@@ -1,0 +1,19 @@
+.book-management {
+  width: 100%;
+  margin: 5rem 0;
+  &__content {
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    &__title {
+      width: 100%;
+    }
+    & > *:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+    select {
+      padding: 1.5rem;
+    }
+  }
+}

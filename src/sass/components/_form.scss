@@ -1,0 +1,34 @@
+.form {
+  &__group {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    label {
+      font-size: 1rem;
+      margin-left: 1rem;
+      transition: all 0.2s;
+    }
+    input {
+      width: 100%;
+      font-size: 2rem;
+      border-radius: 6px;
+      padding: 1rem;
+      background-color: $color-grey-light;
+      border: none;
+      transition: all 0.2s;
+      &:focus {
+        outline: 2px solid rgba($color-primary-light, 0.5);
+        background-color: $color-white;
+      }
+      &:placeholder-shown + label {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-3rem);
+      }
+      &.input-invalid {
+        background-color: rgba($color-warning, 0.5);
+        outline: 2px solid $color-warning;
+      }
+    }
+  }
+}

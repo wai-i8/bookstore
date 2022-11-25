@@ -1,0 +1,82 @@
+.adv {
+  width: 100%;
+  margin: 0 auto;
+  padding: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20rem;
+  background-color: $color-beige;
+  &__caption {
+    margin-right: 3rem;
+    @include respond(phone) {
+      margin-right: 0;
+    }
+  }
+  @include respond(phone) {
+    flex-direction: column;
+    justify-content: space-around;
+    height: 25rem;
+  }
+}
+
+.footer {
+  padding: 3rem;
+  width: 100%;
+  background-color: $color-primary-dark;
+  font-weight: 400;
+  color: $color-white;
+  a,
+  i {
+    text-decoration: none;
+    &:hover {
+      color: $color-grey;
+    }
+  }
+  &__grid-container {
+    display: grid;
+    grid-template-areas:
+      "about social-info"
+      "about payment"
+      "privacy privacy";
+    width: 70%;
+    margin: 0 auto;
+    gap: 3rem;
+    justify-content: space-between;
+  }
+  &__about {
+    display: flex;
+    flex-direction: column;
+    grid-area: about;
+    a {
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+  &___social-info {
+    grid-area: social-info;
+  }
+  &__payment {
+    grid-area: payment;
+  }
+
+  &__social-info,
+  &__payment {
+    &-icon {
+      & > * {
+        margin-right: 1rem;
+      }
+    }
+  }
+  &__privacy {
+    justify-self: center;
+    grid-area: privacy;
+    width: 100%;
+    justify-content: space-around;
+    @include respond(phone) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}

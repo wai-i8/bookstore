@@ -1,0 +1,347 @@
+.navigation {
+  background-color: $color-white;
+  height: 15rem;
+  width: 100%;
+  padding: 1rem 3rem;
+  padding-bottom: 0;
+  border-bottom: solid 1px $color-grey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  z-index: 10;
+  //////////Maintain the height of a fixed element (navigation bar)
+  & + div {
+    height: 15rem;
+    display: block;
+    @include respond(phone) {
+      height: 10rem;
+    }
+  }
+
+  @include respond(phone) {
+    height: 10rem;
+  }
+
+  &__flex-container {
+    &--top {
+      display: flex;
+      height: 70%;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      @include respond(phone) {
+        justify-content: flex-start;
+        height: 100%;
+      }
+      .search {
+        flex: 0 0 35%;
+        @include respond(phone) {
+          display: none;
+        }
+      }
+    }
+    &--bottom {
+      height: 30%;
+      display: flex;
+      justify-content: center;
+      position: relative;
+      @include respond(phone) {
+        display: none;
+      }
+      .navigation__category {
+        display: flex;
+        height: 100%;
+        & > * {
+          text-decoration: none;
+          color: $color-black;
+          transition: all 0.2s;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          &::after {
+            content: "";
+            width: 0;
+            border-bottom: 3px solid $color-primary-2;
+            transition: all 0.2s;
+          }
+          &:not(:last-child) {
+            margin-right: 3rem;
+          }
+          &:hover::after {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  ////////////////// SHOW NAVIGATION ITEM DROP LIST
+  ///
+  &__fiction:hover &__category-fiction,
+  &__non-fiction:hover &__category-non-fiction {
+    display: block;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+  }
+  &__cartIcon {
+    position: relative;
+  }
+  &__notification {
+    position: absolute;
+    top: 0;
+    right: 1.5rem;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    background-color: $color-red;
+    color: $color-white;
+    font-size: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__icon {
+    height: 6rem;
+    width: 6rem;
+    margin-right: 1rem;
+  }
+  &__title {
+    font-size: 3rem;
+    text-decoration: none;
+    color: $color-black;
+  }
+  &__user-info {
+    flex: 0 0 30%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    @include respond(phone) {
+      display: none;
+    }
+    a {
+      text-decoration: none;
+      color: $color-black;
+      font-weight: 400;
+      padding: 1rem 3rem;
+      &:hover {
+        font-weight: 500;
+        color: $color-primary-dark;
+      }
+    }
+    & > * {
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
+    }
+  }
+
+  //////////////////NAVIGATION ITEM DROP LIST
+  ///
+
+  &__category-non-fiction,
+  &__category-fiction {
+    width: 80%;
+    padding: 2rem 4rem;
+    height: 20rem;
+    border-radius: 0 0 1rem 1rem;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    background-color: $color-white;
+    transition: height 0.5s;
+    display: none;
+    box-shadow: 5px 5px 15px -3px rgba(0, 0, 0, 0.7);
+    &--list {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      overflow: hidden;
+    }
+    &--item {
+      list-style: none;
+      a {
+        text-decoration: none;
+        color: $color-black;
+        &:hover {
+          font-weight: 500;
+          color: $color-primary-dark;
+        }
+      }
+
+      cursor: pointer;
+      &:hover {
+        font-weight: 500;
+        color: $color-primary-dark;
+      }
+    }
+  }
+
+  &-respond {
+    display: none;
+    @include respond(phone) {
+      flex: 0 0 10%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    &__checkbox {
+      display: none;
+      &:checked ~ .navigation-respond__nav {
+        width: 100%;
+      }
+    }
+
+    &__toggled-list {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s ease-out;
+      font-size: 2.5rem;
+      background-color: $color-grey;
+    }
+
+    &__list-toggler {
+      display: none;
+      &:checked + .navigation-respond__toggled-list {
+        max-height: 50rem;
+      }
+    }
+
+    &__checkbox:checked + &__button &__icon {
+      background-color: transparent;
+    }
+
+    &__checkbox:checked + &__button &__icon::before {
+      top: 0;
+      transform: rotate(135deg);
+    }
+
+    &__checkbox:checked + &__button &__icon::after {
+      top: 0;
+      transform: rotate(-135deg);
+    }
+
+    &__button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      div {
+        position: absolute;
+        width: 3rem;
+        height: 3rem;
+      }
+    }
+    &__icon {
+      position: relative;
+      &,
+      &::before,
+      &::after {
+        width: 3rem;
+        height: 2px;
+        background-color: $color-black;
+        display: inline-block;
+      }
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        transition: all 0.2s;
+      }
+      &::before {
+        top: -1rem;
+      }
+      &::after {
+        top: 1rem;
+      }
+    }
+    &__nav {
+      position: fixed;
+      top: 10rem;
+      right: 0;
+      width: 0;
+      height: 100%;
+      background-color: $color-grey-light;
+      color: $color-white;
+      z-index: 100;
+      overflow: hidden;
+      transition: all 0.4s;
+    }
+    &__content {
+      padding: 6rem;
+      width: 100%;
+      height: 100%;
+    }
+    &__list {
+      list-style: none;
+      font-size: 3rem;
+      & > *:not(:last-child) {
+        margin-bottom: 2rem;
+      }
+      & * {
+        text-decoration: none;
+        color: $color-black;
+      }
+    }
+    &__item {
+      border-bottom: solid 1px $color-grey;
+    }
+  }
+}
+
+.search {
+  &__input {
+    padding: 0 2rem;
+    border: none;
+    border-radius: 100px;
+    width: 90%;
+    height: 3.5rem;
+    margin-right: -3rem;
+    background-color: $color-grey-light;
+    transition: all 0.2s;
+    &:focus {
+      outline: 1px solid rgba($color-primary-light, 0.5);
+      background-color: $color-white;
+      width: 100%;
+    }
+  }
+  &__button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+}
+
+.news-bar {
+  width: 100%;
+  height: 6rem;
+  border-bottom: solid 1px $color-grey;
+  position: relative;
+  text-align: center;
+  span {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 300;
+    @include respond(phone) {
+      width: 100%;
+    }
+  }
+  a {
+    text-decoration: none;
+    font-weight: 500;
+    color: $color-primary-dark;
+  }
+}
